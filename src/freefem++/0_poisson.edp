@@ -1,10 +1,12 @@
-border gamma(t=0, 2*pi) { x=cos(t); y=sin(t); } // Define boundary
-mesh Th = buildmesh(gamma(40)); // Build mesh with 40 intervals on boundary
-fespace Vh(Th,P1); // Define P1 finite element space
-Vh u,v; // Build two functions in this space (unknown and test function)
-func f = exp(x)*sin(y);  // Right hand side
-solve Dirichlet(u,v) =   // Define variational formulation
+int nIntervals = 40; // Number of intervals on each side of the boundary
+mesh Th = square(nIntervals, nIntervals);  // Define a mesh of [0,1]^2
+plot(Th, wait=1);
+int[int] boundary=[1,2,3,4]; // Vector of ints (labels of the 4 edges of square)
+fespace Vh(Th, P1); // Define P1 finite element space
+Vh u, v; // Build two functions in this space (unknown and test function)
+func f = 4; // Right hand side function
+solve Dirichlet(u, v) =   // Define variational formulation
   int2d(Th) ( dx(u)*dx(v) + dy(u)*dy(v) )
-  - int2d(Th) ( f*v );
-  //+ on( gamma, u=0 );
-plot(u, fill=true, value=1);  // Show results
+  - int2d(Th) ( f*v )
+  + on( boundary, u=0 ); // Dirichlet boundary condition
+plot(u, dim=3, fill=true, value=true);  // Show results
