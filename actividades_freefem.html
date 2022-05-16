@@ -1,0 +1,21 @@
+<h1 id="actividades-con-freefem.-edp-y-métodos-numéricos">Actividades con FreeFEm++. EDP y Métodos Numéricos</h1>
+<p>FreeFEm++ un lenguaje y un motor para la resolución de EDP mediante el MEF. Sitio web: <a href="https://doc.freefem.org/" class="uri">https://doc.freefem.org/</a></p>
+<h2 id="instalación">Instalación</h2>
+<ul>
+<li><p>FreeFEm++ tiene licencia libre. Puede instalarse de la forma habitual en sistemas operativos Windows, Mac y GNU/Linux. Ver <a href="https://doc.freefem.org/introduction/installation.html" class="uri">https://doc.freefem.org/introduction/installation.html</a>. El lenguaje FreeFEm++ está inspirado en C/C++. Suele almacenarse en ficheros con la extensión <code>.edp</code> y es ejecutado por el intérprete FreeFEm++ (el programa FreeFEm++ instalado).</p>
+<ul>
+<li><p>Además de FreeFEm++, se necesita instalar un editor que permita escribir programas en este lenguaje. Por ejemplo, se recomienda instalar <a href="https://atom.io/">Atom, un editor de código abierto</a> que está disponible para los sistemas operativos habituales. Vamos a ver cómo puede integrarse con FreeFEm++:</p></li>
+<li><p>Una de las características de Atom es su capacidad para ser extendido mediante paquetes. Ver <a href="https://flight-manual.atom.io/using-atom/sections/atom-packages/">más información en su página web</a>. Esta página puede ser un buena lectura para aprender el proceso para la instalación de los paquetes que se comentan a continuación. En concreto, podemos instalar paquetes que le permitan (1) reconocer y colorear la sintaxis de FreeFEm++ y (2) utilizar FreeFEm++ para ejecutar el código que está siendo editado. En concreto:</p>
+<ul>
+<li><code>language-freefem-official</code>: paquete para la integración del lenguaje en Atom, en particular coloreado de la sintaxis</li>
+<li><code>freefem-runner</code>: para ejecutar ficheros (con la extensión <code>.epp</code>) desde el editor
+<ul>
+<li>Para ejecutar código FreeFEm++ usando <code>freefem-runner</code>, puede ser conveniente añadir la carpeta donde está situado el intérprete de FreeFEm++ a la variable <code>PATH</code> del sistema. Especialmente en sistemas Windows. Se puede encontrar <a href="https://docs.microsoft.com/es-es/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)/">más información, por ejemplo, en la web de Microsoft</a></li>
+<li>Si el proceso de instalación funcionó correctamente, puede ejecutarse el código FreeFEm++ contenido en un fichero <code>.edp</code> mediante la siguiente secuencia del menú <code>Packages</code>: <code>FreeFEM Runner</code>, <code>Launch compilation</code>.</li>
+<li>Por ejemplo, al ejecutar el siguiente programa:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>cout &lt;&lt; <span class="st">&quot;Hola mundo&quot;</span> &lt;&lt; endl;</span></code></pre></div>
+Se abrirá una ventana en la zona inferior similar a la siguiente, donde se ofrece información sobre la ejecución del programa. <img src="img/salida-ff.png" alt="Ejemplo de salida de FreeFEm++" /></li>
+</ul></li>
+</ul></li>
+</ul>
