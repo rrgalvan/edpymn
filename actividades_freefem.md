@@ -22,4 +22,15 @@ MEF. Sitio web: <https://doc.freefem.org/>
         Se abrirá una ventana en la zona inferior similar a la siguiente, donde se ofrece información sobre la ejecución del programa.
         ![Ejemplo de salida de FreeFEm++](img/salida-ff.png)
 
-## Instalación
+## Primer ejemplo: Problema de Poisson con condiciones Dirichlet
+
+- Como primer ejemplo, resolveremos la EDP de Poisson con condiciones de contorno Dirichlet:
+$-\Delta u = f$  en  $\Omega$,
+$u = 0$  sobre  $\Omega$.
+- Podemos ver el código en el fichero https://github.com/rrgalvan/edpymn/blob/main/src/freefem%2B%2B/0_poisson.edp para el caso en en el que $\Omega$ es el intervalo unidad, $(0,1)^2$ y $f=4$ (con lo que la solución exacta es $u(x,y)=x(x-1)y(y-1)$).
+- Uno de los puntos fuertes de FreeFEm++ es su excelente documentación, a la que se puede acceder en versión web directamente desde su web, <https://doc.freefem.org/documentation/> (también en [versión PDF](https://github.com/FreeFem/FreeFem-doc/raw/pdf/FreeFEM-documentation.pdf)). Aconsejamos detenerse a estudiarla a quien esté interesado en adquirir conocimientos en el lenguaje y en general en los métodos de elementos finitos.
+- Es particularmente interesante la sección *Learning by Examples". En ella puede encontrarse el ejemplo anterior (ecuación de Poisson con condiciones de contorno Dirichlet homogéneas), pero para el caso en el que el dominio $\Omega$ es el círculo unidad y $f(x,y)=xy$: https://doc.freefem.org/tutorials/poisson.html
+- En la parte final de este ejemplo se comenta cómo acceder al sistema de ecuaciones (matriz y segundo miembro) subyacentes al método de los elementos finitos (y, en general, a los métodos de Galerkin).
+
+## Segundo ejemplo: Problema de Poisson con condiciones Dirichlet/Neumann
+- En <https://doc.freefem.org/tutorials/membrane.html> se puede ver un ejemplo en el que se resuelve el problema de Poisson pero con condiciones de contorno mixtas Dirichlet/Neumann en distintas partes de la frontera, $\Gamma_1$ y $\Gamma_2$.
