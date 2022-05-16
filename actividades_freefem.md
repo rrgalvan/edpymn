@@ -21,3 +21,5 @@ MEF. Sitio web: <https://doc.freefem.org/>
         ```
         Se abrirá una ventana en la zona inferior similar a la siguiente, donde se ofrece información sobre la ejecución del programa.
         ![Ejemplo de salida de FreeFEm++](img/salida-ff.png)
+
+## Instalación
