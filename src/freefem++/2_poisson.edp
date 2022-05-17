@@ -1,0 +1,48 @@
+//
+// EDP y MN. Expresión matricial del MEF
+//
+
+// Frontera
+border gamma1(t=0,pi) { x=cos(t); y=sin(t); }
+border gamma2(t=pi,2*pi) { x=cos(t); y=sin(t); }
+// Malla cuya fronter es la variable gamma anterior
+int nFrontera = 3;
+mesh Th = buildmesh( gamma1(nFrontera) + gamma2(nFrontera) );
+plot(Th, wait=true);
+
+fespace Vh(Th, P1); // Vh: espacio de elementos P1
+Vh u, v; // Incógnita y f. test
+
+func f = 2*x + 2*y;
+macro grad(u) [ dx(u), dy(u) ]  // Fin de macro
+
+// a(u,v) - L(v) = 0
+solve Laplace(u,v)=
+    // Forma bilineal a(u,v)
+    int2d(Th)( grad(u)' * grad(v) )
+    // Forma lineal  L(v)
+    - int2d(Th)(f*v)
+    + on(gamma1, u=0 ) + on(gamma2, u=1) ;
+
+plot(u, value=1, fill=1, cmm="Soluci'on, solve", wait=true);
+
+varf a(u,v)=
+    int2d(Th)( grad(u)' * grad(v) )
+    + on(gamma1, u=0 ) + on(gamma2, u=1) ;
+varf L(unused, v)=
+    int2d(Th)(f*v)
+    + on(gamma1, unused=0 ) + on(gamma2, unused=1) ;
+
+// Sistema de ecuaciones A x = b
+matrix A = a(Vh, Vh); //stiffness matrix
+Vh b = L(0,Vh); // vector segundo miembro: b[]
+
+cout << "Matriz..........................." << endl;
+cout << A << endl;
+cout << "Vector..........................." << endl;
+cout << b[] << endl;
+
+// Resolver el sistema A * u[] = F[]
+u[] = A^-1*b[];
+
+plot(u, value=1, fill=1, cmm="Soluci'on, varf");
