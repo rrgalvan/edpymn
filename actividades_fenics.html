@@ -25,17 +25,17 @@
 </ul>
 </nav>
 <h1 id="actividades-con-fenics.-edp-y-métodos-numéricos">Actividades con FEniCS. EDP y Métodos Numéricos</h1>
-<p>FEniCS es una biblioteca para la resolución de EDP mediante el método de los elementos finitos. Mantiene versiones C++ y Python. Su página web es https://fenicsproject.org/</p>
-<p>FEniCS es muy ágil y está en continuo desarrollo. Aunque muy recientemente se ha publicado la versión FEniCSx, que será estándar a corto plazo, nos centraremos en las versiones anteriores (pues en nuestras pruebas se muestran más estables). Por tanto, estableceremos la siguiente documentación de referencia: https://fenicsproject.org/olddocs/dolfin/latest/python/</p>
+<p>FEniCS es una biblioteca para la resolución de EDP mediante el método de los elementos finitos. Mantiene versiones C++ y Python. Su página web es <a href="https://fenicsproject.org/" class="uri">https://fenicsproject.org/</a></p>
+<p>FEniCS es muy ágil y está en continuo desarrollo. Aunque muy recientemente se ha publicado la versión FEniCSx, que será estándar a corto plazo, nos centraremos en las versiones anteriores (pues en nuestras pruebas se muestran más estables). Por tanto, estableceremos la siguiente documentación de referencia: <a href="https://fenicsproject.org/olddocs/dolfin/latest/python/" class="uri">https://fenicsproject.org/olddocs/dolfin/latest/python/</a></p>
 <h2 id="instalación">Instalación</h2>
-<p>FEniCS está orientada a sistemas Unix. Su instalación en Windows requiere el uso de WSL (Windows subystem for Linux) o de contenedores como Docker. En sistemas Mac, puede utilizarse de forma estándar con Conda/Anaconda. En sistemas Linux/Ubuntu, simplemente hay que instalr el paquete de forma estándar (usando una <em>ppa</em>, un repositorio externo a Ubuntu). - https://fenicsproject.org/olddocs/dolfin/latest/python/installation.html</p>
+<p>FEniCS está orientada a sistemas Unix. Su instalación en Windows requiere el uso de WSL (Windows subystem for Linux) o de contenedores como Docker. En sistemas Mac, puede utilizarse de forma estándar con Conda/Anaconda. En sistemas Linux/Ubuntu, simplemente hay que instalr el paquete de forma estándar (usando una <em>ppa</em>, un repositorio externo a Ubuntu). - <a href="https://fenicsproject.org/olddocs/dolfin/latest/python/installation.html" class="uri">https://fenicsproject.org/olddocs/dolfin/latest/python/installation.html</a></p>
 <ul>
 <li>Como editor, se puede usar Atom o cualquier otro de los muchos editores adecuado para el lenguaje Python</li>
 </ul>
 <h2 id="primer-ejemplo-problema-de-poisson-con-condiciones-dirichlet">Primer ejemplo: Problema de Poisson con condiciones Dirichlet</h2>
 <ul>
 <li><p>Como primer ejemplo, resolveremos la EDP de Poisson con condiciones de contorno Dirichlet: <span class="math inline"> − <em>Δ</em><em>u</em> = <em>f</em></span> en <span class="math inline"><em>Ω</em></span>, <span class="math inline"><em>u</em> = 0</span> sobre <span class="math inline"><em>Ω</em></span>.</p></li>
-<li><p>Podemos ver el código en el fichero https://github.com/rrgalvan/edpymn/blob/main/src/fenics/0_poisson.py para el caso en en el que <span class="math inline"><em>Ω</em></span> es el intervalo unidad, <span class="math inline">(0, 1)<sup>2</sup></span> y <span class="math inline"><em>f</em> = 4</span> (con lo que la solución exacta es <span class="math inline"><em>u</em>(<em>x</em>, <em>y</em>) = <em>x</em>(<em>x</em> − 1)<em>y</em>(<em>y</em> − 1)</span>).</p></li>
+<li><p>Podemos ver el código en el fichero <a href="https://github.com/rrgalvan/edpymn/blob/main/src/fenics/0_poisson.py" class="uri">https://github.com/rrgalvan/edpymn/blob/main/src/fenics/0_poisson.py</a> para el caso en en el que <span class="math inline"><em>Ω</em></span> es el intervalo unidad, <span class="math inline">(0, 1)<sup>2</sup></span> y <span class="math inline"><em>f</em> = 4</span> (con lo que la solución exacta es <span class="math inline"><em>u</em>(<em>x</em>, <em>y</em>) = <em>x</em>(<em>x</em> − 1)<em>y</em>(<em>y</em> − 1)</span>).</p></li>
 </ul>
 </body>
 </html>

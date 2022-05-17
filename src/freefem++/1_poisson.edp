@@ -1,0 +1,38 @@
+//
+// EDP y MN. Errors to exact solution
+//
+int nIntervals = 10; // Number of intervals on each side of the boundary
+mesh Th = square(nIntervals, nIntervals);  // Define a mesh of [0,1]^2
+bool doPlot = false;
+if(doPlot) {
+  plot(Th, wait=1);
+}
+
+int[int] boundary=[1,2,3,4]; // Vector of ints (labels of the 4 edges of square)
+fespace Vh(Th, P1); // Define P1 finite element space
+Vh u, v; // Build two functions in this space (unknown and test function)
+func f = 2*x*(1-x)+2*y*(1-y); // Right hand side function
+
+solve Dirichlet(u, v) =   // Define variational formulation
+  int2d(Th) ( dx(u)*dx(v) + dy(u)*dy(v) )
+  - int2d(Th) ( f*v )
+  + on( boundary, u=0 ); // Dirichlet boundary condition
+
+if(doPlot) {
+  plot(u, dim=3, wait=1, fill=true, value=true);  // Show results
+}
+func exactSol = x*(1-x)*y*(1-y);  // Exact soluton for previous data
+func dxExactSol = (1-2*x)*y*(1-y);  // dx(exactSol)
+func dyExactSol = x*(1-x)*(1-2*y);  // dx(exactSol)
+
+Vh uex = exactSol;  // Projection in Vh
+Vh dxUex = dxExactSol;  // Projection in Vh
+Vh dyUex = dyExactSol;  // Projection in Vh
+if(doPlot) {
+  plot(u, dim=3);
+ }
+
+real l2Err = sqrt(int2d(Th)((u-uex)^2));
+real h1Err = sqrt(int2d(Th)((dx(u)-dxUex)^2 + (dy(u)-dyUex)^2 ));
+cout << "L2 error " << l2Err << endl;
+cout << "H1 error " << h1Err << endl;
