@@ -22,7 +22,7 @@ MEF. Sitio web: <https://doc.freefem.org/>
         Se abrirá una ventana en la zona inferior similar a la siguiente, donde se ofrece información sobre la ejecución del programa.
         ![Ejemplo de salida de FreeFEm++](img/salida-ff.png)
 
-## Primer ejemplo: Problema de Poisson con condiciones Dirichlet
+## Ejemplo 0: Problema de Poisson con condiciones Dirichlet
 
 - Como primer ejemplo, resolveremos la EDP de Poisson con condiciones de contorno Dirichlet:
 $-\Delta u = f$  en  $\Omega$,
@@ -32,5 +32,18 @@ $u = 0$  sobre  $\Omega$.
 - Es particularmente interesante la sección *Learning by Examples". En ella puede encontrarse el ejemplo anterior (ecuación de Poisson con condiciones de contorno Dirichlet homogéneas), pero para el caso en el que el dominio $\Omega$ es el círculo unidad y $f(x,y)=xy$: <https://doc.freefem.org/tutorials/poisson.html>
 - En la parte final de este ejemplo se comenta cómo acceder al sistema de ecuaciones (matriz y segundo miembro) subyacentes al método de los elementos finitos (y, en general, a los métodos de Galerkin).
 
-## Segundo ejemplo: Problema de Poisson con condiciones Dirichlet/Neumann
+## Ejemplo 1: Cálculo de error con solución exacta en un problema de Poisson con condiciones Dirichlet/Neumann y
 - En <https://doc.freefem.org/tutorials/membrane.html> se puede ver un ejemplo en el que se resuelve el problema de Poisson pero con condiciones de contorno mixtas Dirichlet/Neumann en distintas partes de la frontera, $\Gamma_1$ y $\Gamma_2$.
+- En esta página web también se puede ver cómo se puede definir la solución exacta de una EDP. Esta solución es normalmente desconocida, en realidad dada una función "solución exacta", se define una EDP (el segundo miembro, $f$) para que esta función sea solución. En el ejemplo se puede ver la forma de calcular la norma L2. El cálculo norma H1 es similar, utilizando las funciones "dx" (derivada parcial respecto a $x$) y "dy" (derivada parcial $y$).
+- En el [fichero `1_poisson.edp`](https://github.com/rrgalvan/edpymn/blob/main/src/freefem%2B%2B/1_poisson.edp) del repositorio de prácticas de ordenador se puede observar el código desarrollado en clase
+
+## Ejemplo 2: Acceso al sistema de ecuaciones del método de elementos finitos
+- En FreeFEm++ es posible definir la matriz y el vector segundo miembro del sistema de ecuaciones asociado al MEF, utilizando la función  `varf` (en vez de `solve` o `problem`) para definir la formulación variacional.
+- Se pueden ver [detalles sobre `varf`](https://doc.freefem.org/documentation/finite-element.html#problem-definition) en la documentación de FreeFem++
+- En el [fichero `2_poisson.edp`](https://github.com/rrgalvan/edpymn/blob/main/src/freefem%2B%2B/2_poisson.edp) del repositorio de prácticas de ordenador se puede observar el código desarrollado en clase
+
+## Ejemplo 3: Resolución de ecuación parabólica (evolución en tiempo)
+
+- En este ejemplo, resolveremos la ecuación del calor con condiciones de contorno de tipo Neumann homogéneas. Para la semi discretización en tiempo, utilizamos el método de Euler Implícito (diferencias finitas regresivas en tiempo).
+- Los detalles y una versión del programa FreeFEm++ están desarrollados en el fichero `freefem++-course.pdf` en el campus virtual.
+- En el [fichero `3_poisson.edp`](https://github.com/rrgalvan/edpymn/blob/main/src/freefem%2B%2B/3_poisson.edp) del repositorio de prácticas de ordenador se puede observar el código desarrollado en clase

@@ -6,9 +6,12 @@
 border gamma1(t=0,pi) { x=cos(t); y=sin(t); }
 border gamma2(t=pi,2*pi) { x=cos(t); y=sin(t); }
 // Malla cuya fronter es la variable gamma anterior
-int nFrontera = 3;
+int nFrontera = 30;
 mesh Th = buildmesh( gamma1(nFrontera) + gamma2(nFrontera) );
 plot(Th, wait=true);
+// savemesh(Th, "/tmp/circle_mesh.mesh");
+load "iovtk";
+savevtk("/tmp/mesh.vtk", Th);
 
 fespace Vh(Th, P1); // Vh: espacio de elementos P1
 Vh u, v; // Incógnita y f. test
