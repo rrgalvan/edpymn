@@ -13,13 +13,19 @@ border gamma1(t=x1,x3) { x = t; y = y1; }
 border gamma2(t=y1,y2) { x = x3; y = t; }
 border gamma3(t=x4,x2) { x = t; y = y2; }
 
-int nPuntos = 20;
-plot( gamma0(nPuntos) + gamma1(nPuntos)
-      + gamma2(nPuntos) + gamma3(nPuntos) );
+int nPuntos = 40;
+int doPlot = false;
+if(doPlot) {
+  plot( gamma0(nPuntos) + gamma1(nPuntos)
+        + gamma2(nPuntos) + gamma3(nPuntos) );
+ }
 
 mesh Th = buildmesh(gamma0(nPuntos) + gamma1(nPuntos)
-                    + gamma2(nPuntos/2) + gamma3(nPuntos) );
-plot(Th);
+                    + gamma2(nPuntos/5) + gamma3(nPuntos) );
+// savevtk("/tmp/m.vtk", Th);
+if(doPlot) {
+  plot(Th);
+ }
 
 // Espacio de elementos finitos
 fespace Vh(Th, P2);
@@ -32,17 +38,21 @@ Vh u0; // Solución en la etapa de tiempo anterior
 // Datos
 real C0 = 1, C1 = 30;
 real nu = 10; // Coeficiente de difusión
-real dt = 0.001; // Paso en tiempo
-int nIter = 200; // Nº iteraciones en tiempo
+real dt = 0.01; // Paso en tiempo
+int nIter = 100; // Nº iteraciones en tiempo
 real Tmax = dt*nIter;
 real t; // Tiempo actual
-
-u0 = 0; // Condición inicial
 
 // Fuerza externa, f
 func real f(real x, real y, real t) {
   return C0*exp(-C1*(x^2 + y^2)) * t/Tmax;
 }
+
+u0 = 0; // Condición inicial
+
+// Grabr a un fichero la condición inicial
+int[int] Order = [1]; // Grado de polinomios en vtk
+savevtk("calor-0.vtk", Th, u, dataname="u", order=Order);
 
 // Formulación variacional
 macro grad(u) [dx(u), dy(u)] // EOM
@@ -68,11 +78,15 @@ problem CalorEulerExplic(u, ub) =
 // Bucle en tiempo (Euler Implícito)
 for(int m=1; m<=nIter; m++) {
   t = dt*m;  // Instante de tiempo en la etapa m
-  cout << "Iteraci'on de tiempo " << m << "(t=" << t << ")" << endl;
+  cout << "Iteraci'on de tiempo " << m << " (t=" << t << ")" << endl;
 
   CalorEulerImplic; // Resolver el problema llamado "Calor" (devuelve u)
-  plot(u, fill=1, value=1, cmm = "sol t=" + t, wait=1);
+  if(doPlot) {
+    plot(u, fill=1, value=1, cmm = "sol t=" + t, wait=1);
+  }
 
   // Preparamos la siguiente etapa
   u0 = u;
+
+  savevtk("calor-" + m + ".vtk", Th, u, dataname="u", order=Order);
  }

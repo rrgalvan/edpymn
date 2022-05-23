@@ -11,8 +11,8 @@ def convert_mesh_to_xdmf(input_file, output_file):
     meshio.xdmf.write(output_mesh_file,
                       meshio.Mesh(msh.points, cells = {"triangle": clls}))
 
-input_mesh_file = "/tmp/m.msh"
-output_mesh_file = "/tmp/m.xdmf"
+input_mesh_file = "m.msh"
+output_mesh_file = "m.xdmf"
 convert_mesh_to_xdmf(input_mesh_file, output_mesh_file)
 mesh = Mesh()
 with XDMFFile(output_mesh_file) as file:
