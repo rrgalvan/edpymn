@@ -7,7 +7,7 @@ mesh = Mesh()
 with XDMFFile(mesh_file) as file:
     file.read(mesh)
 
-do_plot = False
+do_plot = True
 if do_plot:
     plot(mesh)
     plt.show()
@@ -24,9 +24,6 @@ t = 0 # Instante inicial
 
 # Fuerza externa, f
 C0 = 1; C1 = 30
-# func real f(real x, real y, real t) {
-#   return C0*exp(-C1*(x^2 + y^2)) * t/Tmax;
-# }
 f = Expression("C0*exp(-C1*(pow(x[0],2) + pow(x[1],2))) * t/Tmax",
                C0=C0, C1=C1, Tmax=Tmax, t=t, degree=2);
 
