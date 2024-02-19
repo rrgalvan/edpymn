@@ -25,7 +25,7 @@ A, b = assemble_system(a, L, bc)
 
 # Resolver
 u = Function(Vh)
-solve(A, u.vector(), b)
+solve(A, u.vector(), b, "gmres", "ilu")
 
 # Mostrar la gráfica
 p = plot(u, cmap="coolwarm")  # Plot using a colormap https://matplotlib.org/3.5.0/tutorials/colors/colormaps.html
